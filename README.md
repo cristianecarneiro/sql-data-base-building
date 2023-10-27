@@ -6,7 +6,7 @@ From data cleaning to MySQL database building
 
 ## Intro and Objectives 
 
-The goal of this project is to build a database from several 'dirty' CSV files. I was given six 'dirty' CSV files with no further context. The objective was to create a MySQL database for a VHS rental store that is already operational, i.e., with existing operational data. To achieve this, I cleaned all the files, structured them according to their interrelations, and loaded them into a MySQL database.
+The goal of this project is to build a database from several 'dirty' CSV files. I was given six 'dirty' CSV files with no further context. The objective was to create a MySQL database for a VHS rental store that is already operational, i.e., with existing operational data. To achieve this, I cleaned all the files, structured them according to their interrelations, and loaded them into a MySQL database. Lastly, I have built some queries to get relevant insights from the data. 
 
 
 ## Output 
@@ -19,8 +19,12 @@ The output of this project is stored in this repository, as follows:
 
 
 ## Data Cleaning Process 
-+ a
 
+### actors.cvs
+
++ The full cleaning process can be found in the notebooks folder
++ Key findings: 
+    - There is more than one actress named Suzan Davis (which seems correct based on lit search)
 
 ## Database Creation 
 + a
@@ -34,3 +38,17 @@ The output of this project is stored in this repository, as follows:
 
 ### Table B 
 + a
+
+## Queries 
+
+### Query 1
+
+### Query 2 
+
+### Query 3
+
+### Query 4
+
+### Query 2 
+
+### Query 3
