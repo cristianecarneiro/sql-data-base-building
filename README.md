@@ -54,6 +54,7 @@ The output of this project is stored in this repository, as follows:
 + The full cleaning process can be found in the notebooks folder in THIS file 
 + Relationships
     - This table is linked to 'film' table through the film_id
+    - This table is linked to 'rental' table through the inventory_id
 + Key notes: 
     - There are two stores (store_id = [1,2])
     
@@ -62,7 +63,7 @@ The output of this project is stored in this repository, as follows:
 
 + The full cleaning process can be found in the notebooks folder in THIS file 
 + Relationships
-    - x
+    - This table is linked to 'inventory' table through the inventory_id (although, the range is different) 
 + Key notes: 
     - x
 
