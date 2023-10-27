@@ -1,4 +1,4 @@
-actor_id,first_name,last_name,full_name,last_update
+actor_id,first_name,last_name,full_name,actor_last_update
 1,Penelope,Guiness,Penelope Guiness,2006-02-15 04:34:33
 2,Nick,Wahlberg,Nick Wahlberg,2006-02-15 04:34:33
 3,Ed,Chase,Ed Chase,2006-02-15 04:34:33
