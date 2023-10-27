@@ -18,15 +18,57 @@ The output of this project is stored in this repository, as follows:
 - **sql:** Script for the final MySQL database 
 
 
-## Data Cleaning Process 
+## Data Cleaning and Exploration Process 
 
-### actors.cvs
+### actor.cvs
 
-+ The full cleaning process can be found in the notebooks folder
-+ Key findings: 
++ The full cleaning process can be found in the notebooks folder in THIS file 
++ Key notes: 
     - There is more than one actress named Suzan Davis (which seems correct based on lit search)
+    
+### category.cvs
+
++ The full cleaning process can be found in the notebooks folder in THIS file 
+
+### language.cvs
+
++ The full cleaning process can be found in the notebooks folder in THIS file 
++ Relationships
+    - This table is linked to 'film' table through the language_id
+
+### film.cvs
+
++ The full cleaning process can be found in the notebooks folder in THIS file 
++ Relationships
+    - This table is linked to 'language' table through the language_id
+    - This table is linked to 'inventory' table through the film_id
++ Key notes: 
+    - All movies where released in 2006 (release_year = 2006)
+    - All moves are in English (language_id = 1)
+    - One can keep the movie for 3 through 4 days (rental_duration = [3,4,5,6,7])
+    - There are three different types of rates for the movies [0.99, 2.99, 4.99]
+    - There are five different ratings for the movies ['PG', 'G', 'NC-17', 'PG-13', 'R']    
+
+### inventory.cvs
+
++ The full cleaning process can be found in the notebooks folder in THIS file 
++ Relationships
+    - This table is linked to 'film' table through the film_id
++ Key notes: 
+    - There are two stores (store_id = [1,2])
+    
+ 
+### rental.cvs
+
++ The full cleaning process can be found in the notebooks folder in THIS file 
++ Relationships
+    - x
++ Key notes: 
+    - x
+
 
 ## Database Creation 
+
 + a
 
 
