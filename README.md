@@ -6,8 +6,11 @@ From data cleaning to MySQL database building
 
 ## Intro and Objectives 
 
-The goal of this project is to build a database from several 'dirty' CSV files. I was given six 'dirty' CSV files with no further context. The objective was to create a MySQL database for a VHS rental store that is already operational, i.e., with existing operational data. To achieve this, I cleaned all the files, structured them according to their interrelations, and loaded them into a MySQL database. Lastly, I have built some queries to get relevant insights from the data. 
+The goal of this project is to build a database to support the operations of a VHS rental store.
 
+We were given 7 .csv files with records of the store operations in the previous years (e.g., data on the inventory, rental records, etc.)
+
+To build that database, I cleaned the different files, structured their information according to their interrelations, and loaded them into a MySQL database. Lastly, I have built some queries to get relevant insights from the data. 
 
 ## Output 
 
@@ -17,81 +20,116 @@ The output of this project is stored in this repository, as follows:
 - **notebooks:** Jupyter notebooks with a step-by-step cleaning process of each CSV file
 - **sql:** Script for the final MySQL database 
 
+## Key insights from databases exploration/cleaning 
 
-## Data Cleaning and Exploration Process 
+These are the most relevant insights from the cleaning process that have supported 1) database cleaning decisions 2) MYSQL databased structure/interelations 
 
-### actor.cvs
-
-+ The full cleaning process can be found in the notebooks folder in THIS file 
-+ Key notes: 
-    - There is more than one actress named Suzan Davis (which seems correct based on lit search)
-    
-### category.cvs
-
-+ The full cleaning process can be found in the notebooks folder in THIS file 
-
-### language.cvs
-
-+ The full cleaning process can be found in the notebooks folder in THIS file 
-+ Relationships
-    - This table is linked to 'film' table through the language_id
-
-### film.cvs
-
-+ The full cleaning process can be found in the notebooks folder in THIS file 
-+ Relationships
-    - This table is linked to 'language' table through the language_id
-    - This table is linked to 'inventory' table through the film_id
-+ Key notes: 
-    - All movies where released in 2006 (release_year = 2006)
-    - All moves are in English (language_id = 1)
-    - One can keep the movie for 3 through 4 days (rental_duration = [3,4,5,6,7])
-    - There are three different types of rates for the movies [0.99, 2.99, 4.99]
-    - There are five different ratings for the movies ['PG', 'G', 'NC-17', 'PG-13', 'R']    
-
-### inventory.cvs
-
-+ The full cleaning process can be found in the notebooks folder in THIS file 
-+ Relationships
-    - This table is linked to 'film' table through the film_id
-    - This table is linked to 'rental' table through the inventory_id
-+ Key notes: 
-    - There are two stores (store_id = [1,2])
-    
- 
-### rental.cvs
-
-+ The full cleaning process can be found in the notebooks folder in THIS file 
-+ Relationships
-    - This table is linked to 'inventory' table through the inventory_id (although, the range is different) 
-+ Key notes: 
-    - x
-
+<details>
+<summary>ACTORS.CSV</summary>
+<br>
+<li> This is a database that contains a list of actors with their respective IDs
+<li> There are 200 actors listed (IDs 1 through 200)
+<li> By looking into their full names, we could observe that the name 'Susan Davis' appears twice (although different IDs). Based on some research, it appears that there are two actresses with that name. Therefore, I have kept both. 
+<li> Primary key: actor_id
+<li> Interrelations: this table will be associated with table films in a 'many-to-many' relationship (fk = actor_id and film_id)
+</details>
+<br>
+<details>
+<summary>CATEGORY.CSV</summary>
+<br>
+<li> This is a database that contains a list of film genres with their respective IDs
+<li> There are 16 different genres recorded (IDs 1 through 16)
+<li> Primary key: category_id
+<li> Interrelations: this table could be associated with table films in a 'one-to-many' relationship (although the information to link both tables is present in a third .csv file) (fk = category_id)
+</details>
+<br>
+<details>
+<summary>LANGUAGE.CSV</summary>
+<br>
+<li> This is a database that contains a list of languages with their respective IDs
+<li> There are 6 different languages (IDs 1 through 6) (we will see in other table all moves are in fact in English)
+<li> Primary key: language_ID
+<li> Interrelations: this table is associated with table 'films' in a 'one-to-many- relationship (fk = language_id)
+</details>
+<br>
+<details>
+<summary>FILMS.CSV</summary>
+<br>
+<li> This is a database that contains a list of films with info on them (e.g., release year, language, rental fees)
+<li> There are 1000 titles listed (IDs 1 through 1000) 
+<li> Primary key: films_ID
+<li> Interrelations: this table is associated with: 
+    <ul>
+        <il>table 'actors' in a 'many-to-many- relationship (fk = actor_id, film_id)
+        <il>table 'language' in a 'one-to-many- relationship (fk = language_id)
+        <il>table 'categories' in a 'one-to-many- relationship (fk = category_id)
+</details>
+<br>
+<details>
+<summary>INVENTORY.CSV</summary>
+<br>
+<li> This is a database that contains a log of inventory records of VHS/DVDs and their respective store
+<li> There are 1000 records listed (IDs 1 through 1000) 
+<li> Primary key: inventory_ID
+<li> Interrelations: this table is associated with: 
+    <ul>
+        <il> table 'rental' in a 'one-to-many' relationship (fk = inventory_id). We will see shortly the rental table contained logs of films that were not registered in the inventory (IDs >1000). Those were removed from the dataset. 
+        <il> table 'films' in a 'one-to-many' relationship (fk = film_id)
+</details>
+<br>
+<details>
+<summary>RENTAL.CSV</summary>
+<br>
+<li> This is a database that contains a log of film's rental
+<li> There are 1000 rental records listed (IDs 1 through 1001, indicating there is one ID missing) 
+<li> Primary key: rental_id
+<li> Interrelations: this table is associated with 'inventory ID' in a 'one-to-many' relationship (fk = inventory_id); given the table rental's primary key inventory_id had logs from 1 through 1000, any logs with ID's beyond 1000 were removed.
+</details>
 
 ## Database Creation 
 
-+ a
++ The final database was loaded into MYSQL following the relationships described above.
 
+<details>
+<summary>CODE</summary>
+<br>
+PUT CODE HERE USING '''  
+</details>
+<br>
+<details>
+<summary>CHART</summary>
+<br>
+PUT CODE HERE USING '''  
+</details>
 
-## Final Database 
+## SQL tables to support business 
 
-
-### Table A
-+ a
-
-### Table B 
-+ a
-
-## Queries 
-
-### Query 1
-
-### Query 2 
-
-### Query 3
-
-### Query 4
-
-### Query 2 
-
-### Query 3
+<details>
+<summary>QUESTION 1</summary>
+<br>
+PUT CODE HERE USING '''  
+</details>
+<br>
+<details>
+<summary>QUESTION 2</summary>
+<br>
+PUT CODE HERE USING '''  
+</details>
+<br>
+<details>
+<summary>QUESTION 3</summary>
+<br>
+PUT CODE HERE USING '''  
+</details>
+<br>
+<details>
+<summary>QUESTION 4</summary>
+<br>
+PUT CODE HERE USING '''  
+</details>
+<br>
+<details>
+<summary>QUESTION 5</summary>
+<br>
+PUT CODE HERE USING '''  
+</details>
