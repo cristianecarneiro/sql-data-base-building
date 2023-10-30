@@ -1,4 +1,4 @@
-rental_id,rental_date,inventory_id_2,customer_id,return_date,staff_id,rental_last_update
+rental_id,rental_date,inventory_id,customer_id,return_date,staff_id,rental_last_update
 1,2005-05-24 22:53:30,367,130,2005-05-26 22:04:30,1,2006-02-15 21:30:53
 16,2005-05-25 00:43:11,389,316,2005-05-26 04:42:11,2,2006-02-15 21:30:53
 17,2005-05-25 01:06:36,830,575,2005-05-27 00:43:36,1,2006-02-15 21:30:53
