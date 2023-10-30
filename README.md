@@ -137,9 +137,9 @@ PUT CODE HERE USING '''
 </details>
 <br>
 <details>
-<summary>CHART</summary>
+<summary>EER DIAGRAM</summary>
 <br>
-PUT CODE HERE USING '''  
+![EER](https://github.com/cristianecarneiro/sql-data-base-building/tree/main/eer/EER_diagram.jpg) 
 </details>
 
 ## SQL tables to support business 
