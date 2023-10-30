@@ -62,11 +62,13 @@ The Jupyter notebooks with the full detail can be found [HERE](./data)
 <li> This is a database that contains a list of films with info on them (e.g., release year, language, rental fees)
 <li> There are 1000 titles listed (IDs 1 through 1000) 
 <li> Primary key: films_ID
-<li> Interrelations: this table is associated with: 
+<li> Interrelations: this table is associated with:
     <ul>
-        <il>table 'actors' in a 'many-to-many- relationship (fk = actor_id, film_id)
-        <il>table 'language' in a 'one-to-many- relationship (fk = language_id)
-        <il>table 'categories' in a 'one-to-many- relationship (fk = category_id)
+        <li>table 'actors' in a 'many-to-many- relationship (fk = actor_id, film_id)</li>
+        <li>table 'language' in a 'one-to-many- relationship (fk = language_id)</li>
+        <li>table 'categories' in a 'one-to-many- relationship (fk = category_id)</li>
+        <li>table 'inventory' in a 'one-to-many- relationship (fk = film_id)</li>
+    </ul>
 </details>
 <br>
 <details>
@@ -77,8 +79,9 @@ The Jupyter notebooks with the full detail can be found [HERE](./data)
 <li> Primary key: inventory_ID
 <li> Interrelations: this table is associated with: 
     <ul>
-        <il> table 'rental' in a 'one-to-many' relationship (fk = inventory_id). We will see shortly the rental table contained logs of films that were not registered in the inventory (IDs >1000). Those were removed from the dataset. 
-        <il> table 'films' in a 'one-to-many' relationship (fk = film_id)
+        <li> table 'rental' in a 'one-to-many' relationship (fk = inventory_id). We will see shortly the rental table contained logs of films that were not registered in the inventory (IDs >1000). Those were removed from the dataset. </li>
+        <li> table 'films' in a 'one-to-many' relationship (fk = film_id) </li>
+    </ul>
 </details>
 <br>
 <details>
