@@ -4,25 +4,29 @@ From data cleaning to MySQL database building
 
 ![vhs](https://raw.githubusercontent.com/cristianecarneiro/sql-data-base-building/main/img/VHS.jpg)
 
-## Intro and Objectives 
 
-The goal of this project is to build a database to support the operations of a VHS rental store.
+## Objectives
 
-We were given 7 .csv files with records of the store operations in the previous years (e.g., data on the inventory, rental records, etc.)
+The goal of this project is to build a database to support the operations of a film rental store.
 
-To build that database, I cleaned the different files, structured their information according to their interrelations, and loaded them into a MySQL database. Lastly, I have built some queries to get relevant insights from the data. 
+To achieve that, we were given 7 .csv 'dirty' files with records of the store operations in the previous years (e.g., data on the inventory, rental records, etc.). 
 
-## Output 
+In this project, I cleaned the different files, structured their information according to their interrelations, and loaded them into a MySQL database. Lastly, I have built some queries to get relevant insights to the business from the data. 
+
+## Deliverables  
 
 The output of this project is stored in this repository, as follows: 
 
-- **data:** Both the raw CSV data provided and the cleaned CSV tables 
-- **notebooks:** Jupyter notebooks with a step-by-step cleaning process of each CSV file
-- **sql:** Script for the final MySQL database 
+<li> DATA: Both the raw CSV data provided and the cleaned CSV tables 
+<li> NOTEBOOKS: Jupyter notebooks with a step-by-step cleaning process of each CSV file
+<li> SQL: Script for the final MySQL database 
+<li> EER: Database EER diagram  
 
 ## Key insights from databases exploration/cleaning 
 
-These are the most relevant insights from the cleaning process that have supported 1) database cleaning decisions 2) MYSQL databased structure/interelations 
+These are the most relevant insights from the cleaning process that have supported 1) database cleaning decisions 2) MYSQL databased structure/interelations. 
+
+The Jupyter notebooks with the full detail can be found [HERE](./data) 
 
 <details>
 <summary>ACTORS.CSV</summary>
@@ -94,6 +98,33 @@ These are the most relevant insights from the cleaning process that have support
 <li> Columns 'actor_id' and 'film_id' will be kept as a standalone table that will connect tables 'actors' and 'films'
 <li> Interrelations: this table is associated with 'actors' and 'films' (fk = actor_id and film_id).
 </details>
+
+## Some challenges and solutions 
+
+<details>
+<summary>HOW TO LINK TABLES 'ACTORS' AND 'FILMS'</summary>
+<br>
+<li> Luckly, the rental shop's owners were nice enough to find the old sheet 'OLD_HDD.CSV' which related actors and the different films they have stared. 
+<li> Thefore, I have used a table with columns actor_id and film_id to link tables 'actors' and 'films' in a 'many-to'many' relationship
+</details>
+<br>
+<details>
+<summary>HOW TO LINK TABLES 'INVENTORY' AND 'RENTAL'</summary>
+<br>
+<li> Both tables 'inventory' and 'rental' had a column named inventory_id 
+<li> However, while the data in that field contained in table 'inventory' ranged from 1 to 1000, the data contained in the table 'rental' ranged from 2 to 4581 
+<li> This indicates that some rentals referred to physical films that were not registered in the inventory (or we lost them)
+<li> To be able to use 'inventory_id' as a foreign key in table rental, I have decided to remove the rental records that refered to IDs > 1000. 
+</details>
+<br>
+<details>
+<summary>HOW TO LINK TABLES 'FILMS' AND 'CATEGORIES'</summary>
+<br>
+<li> The old sheet 'OLD_HDD.CSV' also presented information that linked the films to different categories 
+<li> However, that information was not available to every movie.  
+<li> Thefore, I have created category 99 = Unknown, which I attributed to those films (hopefully someone will be able to categorize while there are no clients at the store!)
+</details>
+
 
 ## Database Creation 
 
