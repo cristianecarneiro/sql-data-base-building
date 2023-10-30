@@ -128,48 +128,91 @@ The Jupyter notebooks with the full detail can be found [HERE](./data)
 
 ## Database Creation 
 
-+ The final database was loaded into MYSQL following the relationships described above.
+The final database was loaded into MYSQL following the relationships described above.
 
-<details>
-<summary>CODE</summary>
-<br>
-PUT CODE HERE USING '''  
-</details>
-<br>
-<details>
-<summary>EER DIAGRAM</summary>
-<br>
-![EER](https://github.com/cristianecarneiro/sql-data-base-building/tree/main/eer/EER_diagram.jpg) 
-</details>
+CREATE DATABASE: The code for database creation can be found [HERE](./sql)
+
+EER DIAGRAM: The EER diagram can be found [HERE](./eer) 
 
 ## SQL tables to support business 
 
 <details>
-<summary>QUESTION 1</summary>
+<summary>WHAT HAVE BEEN MY MOST DEMANDED FILMS?</summary>
 <br>
-PUT CODE HERE USING '''  
+
+```
+SELECT f.film_id, f.title, count(rental_id)
+FROM rental as r
+INNER JOIN inventory as i
+ON r.inventory_id = i.inventory_id
+INNER JOIN films as f
+ON f.film_id = i.film_id
+GROUP BY film_id, title
+ORDER BY count(rental_id) DESC
+;
+```  
 </details>
 <br>
 <details>
-<summary>QUESTION 2</summary>
+<summary>WHAT HAVE BEEN MY MOST DEMANDED ACTORS?</summary>
 <br>
-PUT CODE HERE USING '''  
+
+```
+SELECT a.actor_id, a.full_name, count(r.rental_id)
+FROM rental as r
+INNER JOIN inventory as i
+ON r.inventory_id = i.inventory_id
+INNER JOIN films as f
+ON f.film_id = i.film_id
+INNER JOIN actorsfilms AS af
+ON af.film_id = f.film_id
+INNER JOIN actors AS a
+ON a.actor_id = af.actor_id
+GROUP BY actor_id, full_name
+ORDER BY count(rental_id) DESC
+;
+```  
 </details>
 <br>
 <details>
-<summary>QUESTION 3</summary>
+<summary>HOW HAVE MY STAFF BEEN PERFORMING IN TERMS OF #RENTALS ?</summary>
 <br>
-PUT CODE HERE USING '''  
+
+```
+SELECT staff_id, count(rental_id)
+FROM RENTAL
+GROUP BY staff_id
+ORDER BY count(rental_id) DESC
+;
+```  
 </details>
 <br>
 <details>
-<summary>QUESTION 4</summary>
+<summary>WHICH RETURNS ARE DELAYED</summary>
 <br>
-PUT CODE HERE USING '''  
+
+```
+SELECT rental_id, customer_id, f.title
+FROM rental as r
+INNER JOIN inventory as i
+ON r.inventory_id = i.inventory_id
+INNER JOIN films as f
+ON f.film_id = i.film_id
+WHERE (r.return_date - r.rental_date) > rental_duration
+;
+```  
 </details>
 <br>
 <details>
-<summary>QUESTION 5</summary>
+<summary>WHEN MY INTERN HAS SOME EXTRA TIME...</summary>
 <br>
-PUT CODE HERE USING '''  
+
+```
+SELECT title, category_name
+FROM films as f 
+LEFT JOIN categories as c
+ON f.category_id = c.category_id
+WHERE category_name = 'Unknown'
+;
+```  
 </details>
