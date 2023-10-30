@@ -1,8 +1,8 @@
-# Project: Building MySQL Database for VHS Rental Store
+# Project: Building MySQL Database for Film Rental Store
 
 From data cleaning to MySQL database building 
 
-![vhs](https://github.com/cristianecarneiro/sql-data-base-building/tree/main/img/VHS.jpg)
+![vhs](https://raw.githubusercontent.com/cristianecarneiro/sql-data-base-building/main/img/VHS.jpg)
 
 ## Intro and Objectives 
 
@@ -84,6 +84,15 @@ These are the most relevant insights from the cleaning process that have support
 <li> There are 1000 rental records listed (IDs 1 through 1001, indicating there is one ID missing) 
 <li> Primary key: rental_id
 <li> Interrelations: this table is associated with 'inventory ID' in a 'one-to-many' relationship (fk = inventory_id); given the table rental's primary key inventory_id had logs from 1 through 1000, any logs with ID's beyond 1000 were removed.
+</details>
+<br>
+<details>
+<summary>OLD_HDD.CSV</summary>
+<br>
+<li> This table contains data relating actors with movies they have starred, as well the movie's categories
+<li> This information will be useful to 1) connect the tables 'actors' and 'films' and 2) connect the tables 'films' and 'categories' 
+<li> Columns 'actor_id' and 'film_id' will be kept as a standalone table that will connect tables 'actors' and 'films'
+<li> Interrelations: this table is associated with 'actors' and 'films' (fk = actor_id and film_id).
 </details>
 
 ## Database Creation 
